@@ -1,10 +1,10 @@
-# Agricultural Knowledge Graph
+# Recipe Knowledge Graph
 
 项目demo：http://ecnukg.vicp.io
 
 ## 项目介绍：
 
-本项目是上海市《农业信息服务平台及农业大数据综合利用研究》子课题《上海农业农村大数据共享服务平台建设和应用》的研究成果。
+本项目是受课题《上海农业农村大数据共享服务平台建设和应用》的研究成果。
 
 该课题是由上海市农业委员会信息中心主持，以“致富农民、服务市民、提高行政管理效能”为目标，充分发挥大数据在农业农村发展中的重要功能和巨大潜力，重点建设上海市级农业农村大数据中心，促进信息资源的共建共享和创新应用。
 
@@ -14,10 +14,10 @@
 
 
 >
-> ### 华东师范大学数据科学与工程学院
+> ### 电子科技大学计算机科学与工程学院统计机器智能与学习实验室(SMILE Lab)实验室
 >
-> #### 情境计算&知识图谱项目组
-> 学院官网：http://dase.ecnu.edu.cn   
+> #### 知识图谱项目组
+> 实验室官网：http://smilelab.uestc.edu.cn/   
 >
 > 项目组Github： https://github.com/ECNUdase
 >
@@ -25,8 +25,8 @@
 >
 >| Title               | Name | Homepage                                 |
 >| ------------------- | ---- | ---------------------------------------- |
->| Associate Professor | 高　明  | [http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
->| Master              | 陈远哲  | [https://github.com/qq547276542](https://github.com/qq547276542) |
+>| Professor           | 徐增林 | [http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
+>| Doctoral Candidate  | 盛泳潘  | [https://github.com/qq547276542](https://github.com/qq547276542) |
 >| Master              | 匡　俊  | [https://github.com/CrisJk](https://github.com/CrisJk) |
 
 
