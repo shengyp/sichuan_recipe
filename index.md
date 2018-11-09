@@ -25,8 +25,8 @@
 >
 >| Title               | Name | Homepage                                 |
 >| ------------------- | ---- | ---------------------------------------- |
->| Professor           | 徐增林 | [http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
->| Doctoral Candidate  | 盛泳潘  | [https://github.com/qq547276542](https://github.com/qq547276542) |
+>| Professor           | 徐增林 | [http://smilelab.uestc.edu.cn/members/xuzenglin/](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
+>| Doctoral Candidate  | 盛泳潘  | [http://smilelab.uestc.edu.cn/members/shengyongpan/](https://github.com/qq547276542) |
 >| Master              | 匡　俊  | [https://github.com/CrisJk](https://github.com/CrisJk) |
 
 
