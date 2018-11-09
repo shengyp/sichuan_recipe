@@ -1,15 +1,14 @@
 # Recipe Knowledge Graph
 
-项目demo：http://ecnukg.vicp.io
+项目Demo：https://shengyp.github.io/vmse/
+
+
 
 ## 项目介绍：
 
-本项目是受课题《上海农业农村大数据共享服务平台建设和应用》的研究成果。
+该课题属于中央高校重大重点培育类项目《基于社会网络大数据的知识计算理论研究与应用》下的子课题。由电子科技大学计算机科学与工程学院统计机器智能与学习实验室(SMILE Lab)实验室知识图谱项目组主研并完成相关系统的设计与实现工作。
 
-该课题是由上海市农业委员会信息中心主持，以“致富农民、服务市民、提高行政管理效能”为目标，充分发挥大数据在农业农村发展中的重要功能和巨大潜力，重点建设上海市级农业农村大数据中心，促进信息资源的共建共享和创新应用。
-
-华东师范大学数据科学与工程学院（以下简称华师大数据学院）作为课题主要参与单位以实现智慧农业为目标，探索农业大数据分析、挖掘和综合应用。华师大课题组在前期国家重点研发计划《大数据知识工程基础理论及其应用研究》研究基础上，在本项目中，基于碎片化农业大数据，构建面向智慧农业的知识图谱及其应用系统。
-
+该课题将基于多模态的机器理解数据集RecipeQA，通过融合碎片化的菜谱、食谱数据, 构建NLP健康饮食知识图谱及其应用系统。
 
 
 
@@ -25,9 +24,22 @@
 >
 >| Title               | Name | Homepage                                 |
 >| ------------------- | ---- | ---------------------------------------- |
->| Professor           | 徐增林 | [http://smilelab.uestc.edu.cn/members/xuzenglin/](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
+>| Professor           | 徐增林 | [http://smilelab.uestc.edu.cn/members/xuzenglin/](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://www.bigdata-research.org/people/faculty/5.html](http://dase.ecnu.edu.cn/mgao) |
 >| Doctoral Candidate  | 盛泳潘  | [http://smilelab.uestc.edu.cn/members/shengyongpan/](https://github.com/qq547276542) |
 >| Master              | 匡　俊  | [https://github.com/CrisJk](https://github.com/CrisJk) |
+
+
+
+
+## RecipeQA数据集介绍
+
+RecipeQA是
+
+## RecipeQA包含以下三个核心挑战：
+
+- RecipeQA要求识别和链接不同形式的实体，以拥有有效和视觉上基础的推理技能。目前，多模态仅在有限的范围内进行了探索，其中大多数现有的多模态模型在整合不同模态时大多考虑非常简单的策略。
+- 为了在RecipeQA中取得成功，理解系统需要在寻求答案的同时利用常识知识。RecipeQA中的问题需要识别实体（例如番茄）- 在图像的部分和配方的某些部分之间建立概念关联，并及时跟踪这些实体的状态（例如烘焙）。
+- RecipeQA提供了几种专门为烹饪食谱设计的不同任务。下面详细描述，这些任务中的每一个都评估特定的理解技能，并且在单个模型中处理所有这些多个任务需要多任务学习设置。
 
 
 
@@ -161,9 +173,6 @@ CREATE (entity1)-[:RELATION { type: line.AttributeName }]->(entity2)
           
                                                                                                                          
 ```
-
-
-
 
 
 以上步骤是导入爬取到的关系
