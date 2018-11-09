@@ -26,8 +26,9 @@
 >| ------------------- | ---- | ---------------------------------------- |
 >| Professor           | 徐增林 | [http://smilelab.uestc.edu.cn/members/xuzenglin/](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://www.bigdata-research.org/people/faculty/5.html](http://dase.ecnu.edu.cn/mgao) |
 >| Doctoral Candidate  | 盛泳潘  | [http://smilelab.uestc.edu.cn/members/shengyongpan/](https://github.com/qq547276542) |
->| Master              | 匡　俊  | [https://github.com/CrisJk](https://github.com/CrisJk) |
-
+>| Undergraduate       | 吕　哲  | [https://github.com/CrisJk](https://github.com/CrisJk) |
+>| Undergraduate       | 张我豪  | [https://github.com/CrisJk](https://github.com/CrisJk) |
+>| Undergraduate       | 李洁蕊  | [https://github.com/CrisJk](https://github.com/CrisJk) |
 
 
 
