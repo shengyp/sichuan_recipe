@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" style="height: auto;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>A System for Automated Recipe Knowledge Graph Construction Towards Healthy Diet</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="szh">
+
+    <meta name="language" content="English">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/blocks.css">
+    <link rel="stylesheet" href="css/one.style.css">
+    <link rel="stylesheet" href="css/footer-v7.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.style.css">
+    <link rel="stylesheet" href="css/paper-style.css">
+    <script src="css/jquery-2.1.1.min.js"></script>
+    <script src="css/bootstrap.min.js"></script>
+
+    <!--
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js"></script>
+
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery  pace-done" style="font-family: 'Times New Roman', serif;">
+<div class="pace  pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+</div>
+<nav class="one-page-header navbar navbar-default navbar-fixed-top homeapp-header" data-role="navigation">
+    <div class="container">
+        <div class="collapse navbar-collapse ">
+            <div class="menu-container">
+                <ul class="nav navbar-nav">
+                    <li class="page-scroll"><a href="#abstract" style="font-size: 14px">ABSTRACT</a>
+                    </li>
+ <!--                    <li class="page-scroll"><a href="#solutions" style="font-size: 14px">OUR APPROACH</a>
+                    </li> -->
+
+<!--                     <li class="page-scroll">
+                        <a data-toggle="dropdown" href="#" style="font-size: 14px;margin-bottom: 5px">
+                            APPROACH IMPLEMENTATION<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#fact_extr" style="font-size: 14px">Candidate Facts Extraction</a></li>
+                            <li><a href="#estimate_coher" style="font-size: 14px">Topic Coherence Estimation of Candidate Facts</a></li>
+                            <li><a href="#cg" style="font-size: 14px">Conceptual Graph Construction</a></li>
+                        </ul>
+                    </li> -->
+<!--                     <li class="page-scroll"><a href="#exp" style="font-size: 14px">EXPERIMENTAL RESULTS</a>
+                    </li> -->
+                    <li class="page-scroll"><a href="#downloads" style="font-size: 14px">VIDEO</a>
+                    </li>
+
+                    <li class="page-scroll"><a href="#references" style="font-size: 14px">REFERENCES</a>
+                    </li>
+                    <li class="page-scroll"><a href="#acknowledgement" style="font-size: 14px">ACKNOWLEDGEMENT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="promo-section" id="intro">
+    <div class="interactive-slider-v2">
+        <div class="container">
+            <div class="row">
+                <div class="authautherer">
+                    <h2 style="text-align: center;font-size: 35px;line-height: 1.3;color: black">
+                        <!--<i>ASSEMP:</i> -->
+                        <br/>
+                        A System for Automated Recipe Knowledge Graph Construction Towards Healthy Diet
+                    </h2>
+                    <br/>
+                    <div style="margin: 0 auto; text-align: center; font-size: 20px">
+                        <p> The 25th Database Systems for Advanced Applications（DASFAA 2020）</p>
+                    </div>
+                    <br/>
+                    <!-- <p class="author"><strong> Xiuqin Zhong</strong> and <strong>Iryna Gurevych</strong></p> -->
+                    <!--                     <p class="orgnization">University of Electronic Science and Technology of China</p>
+                                        <p class="orgnization">Department of Computer Science, Technische Universit¨ at Darmstadt</p> -->
+                    <span style="margin-right: 10px"><a href="https://shengyp.github.io/"
+                             class="author">Yongpan Sheng</a><sup class="auther-order">1</sup></span>
+                    <span style="margin-right: 10px"><a href="https://" class="author">Yuecheng Lei</a><sup
+                            class="auther-order">1</sup></span>
+                    <span style="margin-right: 10px"><a href="https://" class="author">Gerard de Melo</a><sup
+                            class="auther-order">2</sup></span>
+                    <span style="margin-right: 10px"><a href="https://" class="author">Songchao Wang</a><sup
+                            class="auther-order">1</sup></span>
+                    <span style="margin-right: 10px"><a href="https://" class="author">Jie Shao</a><sup
+                            class="auther-order">1</sup></span>
+                    <span style="margin-right: 10px"><a href="https://" class="author">Zenglin Xu</a><sup
+                            class="auther-order">1</sup></span>
+       <!--              <span style="margin-right: 10px"><a href="" class="author">Chaoran Huang</a><sup class="auther-order">2</sup></span> -->
+                </div>
+                <p></p>
+                <div class="auther-apart">
+                    <span><sup class="auther-order">1</sup><a href="http://www.uestc.edu.cn" class="orgnization">University of Electronic Science and Technology of China, China</a></span>
+                    <span style="text-align: left;margin-right: 10px">&nbsp;&nbsp;<sup class="auther-order">2</sup><a href="https://www.unsw.edu.au/" class="orgnization">University of New South Wales, Australia</a></span>
+                <!--     <span><sup class="auther-order">2</sup><a href="http://www.sdu.edu.cn/" class="orgnization">University of New South Wales, Australia</a></span> -->
+                </div>
+                <p></p>
+                <p></p>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="abstract">
+    <div class="container">
+        <div class="g-pt-70">
+            <div class="g-heading-v10 g-mb-30">
+                <p class="block-name"><span>1.</span> Abstract</p>
+            </div>
+            <div class="row" style="color: #0f0f0f;font-size: 18px; margin:10px 60px">
+                When overwhelming amounts of data in the 24/7 stream of new articles including news reports, business transactions and digital media present, considering only the key entities and concepts and their relationship saves time for acquiring key information. However, the fact that relevant connections may be distributed over a number of sources perplexes the challenge of relation exploration. In this paper, we propose a system to aid users in quickly discerning salient connections and facts from a set of related documents and presents the resulting information in a graph-based visualization. Specifically, given a set of relevant documents as input, we firstly propose a novel importance-based Open Information Extraction (Open IE) approach by exploiting the global structure of a dependency tree to extract candidate facts from above sources.  
+            </div>
+        </div>
+</section>
+
+<!-- <section id="solutions">
+    <div class="container">
+        <div class="g-pt-70 g-pb-30">
+            <div class="g-heading-v10 g-mb-30 ">
+                <p class="block-name"><span>2. </span>Our Approach</p>
+            </div>
+            <div class="row equal-height-columns">
+                <div class="content">
+                    <div class="benefit" style="padding-left: 0">
+                        <h3 class="subtitle">Problem Formulation</h3>
+                        <div style="padding-top: 15px;text-align: left;text-indent: 0em;">
+                            <div style="font-size: 21px;color:black; padding-left: 20px !important; padding-right: 20px !important;" class="content">
+                                Our task is aimed to assist users in quickly finding salient connections and facts from a collection of relevant articles. In summary, it can be best described as a combination of the following subtasks:
+                            </div>
+                            <div style="margin: 20px 60px">
+                                <div>
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse"
+                                            data-target="#g1">
+                                        <b>Subtask 1</b>
+                                    </button>
+                                    <span class="subtask-title">Data Preprocessing</span>
+                                </div>
+                                <div style="margin: 20px 50px; color: black" id="g1" class="collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">NO.</th>
+                                            <th width="95%">Tasks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ac">1.</td>
+                                            <td>
+                                                <b>Document Ranking</b>
+                                                <ol>
+                                                    <li>Given a document topic $T$, select the words appearing in its relevant document collection $D = \{d_1, d_2, ..., d_M\}$ with sufficiently high frequency as topic words.</li> 
+                                                    <li>Compute <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">TF-IDF weights</a> for each word.</li>
+                                                    <li>Rank top-$k$ documents in $D$ by TF-IDF weights, recorded as $D' = \{d_1, d_2, ..., d_k\}$.</li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ac">2.</td>
+                                            <td>
+                                                <b>Coreference Resolution</b>
+                                                <ul>
+                                                    <li>Resolve pronouns for each document $d_i \in D'$ using Stanford CoreNLP [cite]</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ac">3.</td>
+                                            <td>
+                                                <b>Sentence Ranking</b>
+                                                <ul>
+                                                    <li>Compute the <a href="https://github.com/letiantian/TextRank4ZH">TextRank</a> importance scores for all sentences in $d_i$</li>
+                                                    <li>Consider only sentences with high score, denote by $S = \{s_1, s_2, ..., s_K\}$</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="margin: 20px 60px">
+                                <div>
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse"
+                                            data-target="#g2">
+                                        <b>Subtask 2</b>
+                                    </button>
+                                    <span class="subtask-title">Candidate Facts Extraction</span>
+                                </div>
+                                <div style="margin: 20px 50px;color: black" id="g2" class="collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px">
+                                    <thead>
+                                        <tr><th>Tasks</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>More descriptions here</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="margin: 20px 60px">
+                                <div>
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g3">
+                                        <b>Subtask 3</b>
+                                    </button>
+                                    <span class="subtask-title">Topic Coherence Estimation of Candidate Facts</span>
+                                </div>
+                                <div style="margin: 20px 50px;color: black" id="g3" class="collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px">
+                                    <thead>
+                                        <tr><th></th><th>Two-Stage Candidate Triple Filtering (TCTF)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <b>Stage 1.</b> Train a random forest classifier
+                                                <ol>
+                                                    <li>Randomly select a small fraction of triples $F_s \subset F_c$ under the document topic</li>
+                                                    <li>Divide $F_s$ into training set $F_{str}$, validation set $F_{sv}$ and test set $F_{st}$ with ratio 8:1:1</li>
+                                                    <li>Train a random forest classifier $M$ over $F_s$, obtain a F1-score $\theta$</li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <b>Stage 2.</b> Extend Coherent Triple Set
+                                                <ol>
+                                                    <li>Use the random forest $M$ to label each unlabelled triple $f \in F_c$; add $f$ into $F^*_l$ if it has high confidence</li>
+                                                    <li>Retrain model $M$ on $F^*_l$, obtain a new F1-score $\theta$</li>
+                                                    <li>Repeat until $\theta$ converges</li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div style="margin: 20px 60px">
+                                <div>
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g4">
+                                        <b>Subtask 4</b>
+                                    </button>
+                                    <span class="subtask-title">Conceptual Graph Generation</span>
+                                </div>
+                                <div style="margin: 20px 50px;color: black" id="g4" class="collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px">
+                                    <thead>
+                                        <tr>
+                                            <th width="6%">No</th>
+                                            <th width="94%">Tasks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ac">1.</td>
+                                            <td>Merge equivalent concepts and add relations</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ac">2.</td>
+                                            <td>Compute node importance</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ac">3.</td>
+                                            <td>Generate a conceptual graph</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ac">4</td>
+                                            <td>Visualize the conceptual graph</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div style="font-size: 21px;color:black; padding-left: 20px !important; padding-right: 20px !important;" class="content">
+                                The framework of our approach can be shown in Figure 1. It also comprise three major phases in order to address the problems associated with the subtasks as we have discussed earlier.
+                        </div>
+                        <div style="padding-top: 10px">
+                            <img src="fig/model.png" align="center" width="90%">
+                        </div>
+                        <br/>
+                        <span style="text-align: center;">Figure 1. System Architecture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section> -->
+
+<!-- <section id="case1">
+    <div class="container">
+        <div class="g-pt-70">
+            <div class="g-heading-v10 g-mb-30">
+                <p class="block-name"><span>3. </span>Approach Implementation</p>
+            </div>
+            <div class="row">
+                <div class="content">
+                    <div class="benefit">
+                        <div id="fact_extr" style="margin-top: -100px;padding-top: 100px;">
+                            <h3 class="subtitle">3.1  Candidate Facts Extraction</h3>
+                            <div style="color: black !important;text-align: left !important;
+                            display: inline-block !important; text-indent: 0px">
+                                <div class="row">
+                                    <div style="color: #0f0f0f;font-size: 18px; margin:10px 60px">
+                                        Algebraic problem 
+                                    </div>
+                                </div>
+
+                                <div class="questionboder">
+                                    <div style="font-size: 20px; margin: 20px 20px"> Here is the function $
+                                        f(x)=sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2} $.
+                                    </div>
+                                    <div style="font-size: 20px;margin: 20px 20px"> (1) Get the minimum cycle of
+                                        function
+                                        $ f(x) $.
+                                    </div>
+                                    <div style="font-size: 20px;margin: 20px 20px">(2) Get the minimum value of function
+                                        $ f(x) $ at $ [0,\frac{2π}{3}] $.
+                                    </div>
+                                </div>
+
+                                <p style="color: #0f0f0f;font-size: 21px; margin:20px 50px">
+                                    After being processed by NLP, we can get following relations.
+                                </p>
+                                <div>
+                                    <div style="margin: 20px 50px">
+                                        <p style="font-size: 21px;color: black">
+                                            <button type="button" class="btn" data-toggle="collapse"
+                                                    style="padding:0;width: 180px;height:30px;background: rgba(0,0,255,0.5);border-radius: 2px"
+                                                    data-target="#table1">
+                                                <b>Question Relations:</b>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <div id="table1" class="collapse" style="margin: 20px 50px">
+                                        <table class="table table-hover table-bordered table-condensed "
+                                               style="text-indent: 0px; color: black">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-lg-1">NO.</th>
+                                                <th class="col-lg-9">Relations</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>CommonQustionRelations:</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    CommonFunctionRelation{function:$
+                                                    f(x)=sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2} $,definitionDomain:R}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>SubstemRelation:</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>(1) None</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p style="color: #0f0f0f;font-size: 21px; margin:0px 65px">
+                                        And,here is the solving result which contains a very detailed process of solving
+                                        problems.
+                                    </p>
+                                </div>
+                                <div>
+                                    <div style="margin: 20px 50px">
+                                        <p style="font-size: 21px;color: black">
+                                            <button type="button" class="btn" data-toggle="collapse"
+                                                    style="padding:0;width: 180px;height:30px;background: rgba(0,0,255,0.5);border-radius: 2px"
+                                                    data-target="#table2">
+                                                <b>AutoSolving Result:</b>
+                                            </button>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div style="margin: 20px 50px" id="table2" class="collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-lg-1">NO.</th>
+                                            <th class="col-lg-12">Solving Result</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <div>
+                                                    (1)∵ $ f(x)=sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2} $<br>
+                                                    (2)∴ by (1): $ sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2}
+                                                    $<br>
+                                                    (3)∴ by (2): $
+                                                    sin(x)-2\sqrt{3}+2\sqrt{3}*cos(\frac{x}{2}) $
+                                                    <br>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <div>
+                                                    (1)∵ $ f(x)=sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2} $<br>
+                                                    (2)∴ by (1): $ sin(x)-2\sqrt{3}*sin(\frac{x}{2})^{2}
+                                                    $<br>
+                                                    (3)∴ by (2): $
+                                                    sin(x)-2\sqrt{3}+2\sqrt{3}*cos(\frac{x}{2}) $
+                                                    <br>
+                                                    (4)∴ by (3): $ sin(x)-\sqrt{3}+\sqrt{3}*cos(x) $.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div style="font-size: 21px; padding-left: 65px !important; padding-right: 65px !important;"
+                                         class="content">
+                                        The above examples are presented in terms of natural language understanding and
+                                        human-like problem solving.
+                                        First, we enter the question number to get the specific topic content. Secondly,
+                                        the natural language processing
+                                        module analyzes and understands the topics and conclusions and translates them
+                                        into corresponding knowledge relationships.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <!-- 3.2 Topic Coherence Estimation of Candidate Facts -->
+<!--                         <div style="margin-top: -100px;padding-top: 100px;" id="tctf">
+                            <h3 class="subtitle">3.2 Topic Coherence Estimation of Candidate Facts</h3>
+                            <div style="color: black !important;text-align: left !important;
+                            display: inline-block !important;text-indent: 0px !important;">
+                                <div class="content">
+                                    Not all the triple $f_i \in F_c$ is indicative of what is relevant for the specified topic. Such triples need to be filtered out from the candidate set $F_c$ for constructing a knowledge graph. 
+                                    We propose a <b>Two-Stage Candidate Triple Filtering (TCTF)</b> algorithm to solve this problem. The pseudo-code of TCTF is provided below. 
+                                </div>
+                                <br/>
+                                <div style="margin: 10px 60px">
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g5">
+                                        <b>TCTF Algorithm</b>
+                                    </button>
+                                </div>
+                                <div id="g5" class="content collapse">
+                                    <img src="css/algorithm.png" style="width: 80%; margin-left: 5%; margin-top: 20px;" />
+                                </div>
+                                <br/>
+
+                                <div class="content">
+                                    To measure the topic coherence for each $f_c \in F_s$, we define 3 groups of features namely <span class="italic">topic features</span>, <span class="italic">text features</span> and <span class="italic">source features</span>. The following table shows the details about each of these features.
+                                </div>
+                                <div style="margin: 10px 60px">
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#feature_table">
+                                        <b>Feature Table</b>
+                                    </button>
+                                </div>
+                                <div id="feature_table" class="content collapse">
+                                    <img src="css/features.png" style="width: 80%; margin-left: 5%; margin-top: 20px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <!-- 3.3 Conceptual Graph Construction -->
+<!--                         <div style="margin-top: -100px;padding-top: 100px;" id="graph_construction">
+                            <h3 class="subtitle">3.3 Conceptual Graph Construction</h3>
+                            <div class="content">
+                                <!-- subtask 1-->
+ <!--                                <div style="margin: 10px 60px 20px -20px;">
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g6">
+                                        <b>Show Details</b>
+                                    </button>
+                                    <span class="subtask-title">1. Merge equivalent concepts and add relations</span>
+                                </div>
+                                <div id="g6" class="content collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px; color: black;">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                Extracted entities and concepts need to be merged if they are semantically equivalent. <br/>For example, <span class="italic">US</span> and <span class="italic">America</span> refers to the same entity in most cases. We merge concepts in 2 steps.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <b>1. Use of third party Ontological KB</b>
+                                                <ul>
+                                                    <li>Use <a href="https://stanfordnlp.github.io/CoreNLP/">Stanford CoreNLP</a> entity linker to identify entity or concept mentions.</li>
+                                                    <li>Link the identified mentions to Ontological KBs such as Wikipedia or <a href="https://developers.google.com/freebase/">Freebase</a>.</li>
+                                                    <li>If two entities link to the same Wikipedia page, we assume them to be equivalent.</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+ -->
+   <!--                                      <tr>
+                                            <td></td>
+                                            <td>
+                                                <b>2. Human annotation</b>
+                                                <ol>
+                                                    <li>If no sufficient context information presents, expert annotators with NLP background are asked to do the job.</li>
+                                                    <li>Align, Disambiguate and Walk tool is used for semantically similarity computation between concepts.</li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div> -->
+
+                                <!-- subtask 3-->
+                              <!--   <div style="margin: 10px 60px 20px -20px;">
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g7">
+                                        <b>Show Details</b>
+                                    </button>
+                                    <span class="subtask-title">2. Compute node importance</span>
+                                </div>
+                                <div id="g7" class="content collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px; color: black;">
+                                    <tbody>
+                                        <tr>
+                                        <td style="padding: 10px;">
+                                            <ul>
+                                                <li>Assign $w_{ij} = 1$ for directed edge $v_i \rightarrow v_j$, and $w_{ji} = 0.5$ for its reverse edge $v_j \rightarrow v_i$</li>
+                                                <li>Compute the importance of each node using our extended TextRank score</li>
+                                            </ul>
+                                            $$
+                                                I_i = (1-d) \sum_{j \in \mathcal{N}(i)} \frac{w_{ji}}{\sum_{k \in \mathcal{N}(j) w_{jk}}} I(j) + d \cdot p_i
+                                            $$
+                                            <ul>
+                                                <li>$\textbf{p}_{R} = \{p_1, p_2, ..., p_{|\mathcal{V}|}\}$ is a preference vector</li>
+                                                <li>$I$ is the $1 \times |\mathcal{V}|$ importance vectors to be computed</li>
+                                                <li>$\mathcal{N}(i)$ denotes the set of node $v_i$'s neighbors</li>
+                                            </ul>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div> --> 
+
+                                <!-- subtask 3-->
+ <!--                                <div style="margin: 10px 60px 20px -20px;">
+                                    <button type="button" class="btn toggle-btn" data-toggle="collapse" data-target="#g8">
+                                        <b>Show Details</b>
+                                    </button>
+                                    <span class="subtask-title">3. Generate a conceptual graph</span>
+                                </div>
+                                <div id="g8" class="content collapse">
+                                    <table class="table table-hover table-bordered table-condensed"
+                                           style="text-indent: 0px; color: black;">
+                                    <tbody>
+                                        <tr>
+                                        <td style="padding: 10px;">
+                                            <ul>
+                                                <li>Set a constraint of 25 concepts at maximum to the concept graph</li>
+
+                                                <li>Iteratively remove the weakest concepts with relatively lower importance score</li>
+
+                                                <li>Terminate when only one connected component of 25 entities and concepts remains. The result is used as the final conceptual graph $G$</li>
+                                            </ul>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> --> 
+
+<!-- <section id="exp">
+    <div class="container">
+        <div class="g-pt-70 g-pb-30">
+            <div class="g-heading-v10 g-mb-30 ">
+                <p class="block-name"><span>4. </span>Experimental Results</p>
+            </div>
+            <div class="row equal-height-columns">
+                <div class="content">
+                    <div class="animated fadeIn wow animated" data-wow-duration="1.5s"
+                         style="visibility: visible; animation-duration: 1.5s; animation-name: fadeIn;">
+                        <div class="benefit" style="padding-left: 0">
+                            <!-- <h3 class="text-left " style="font-size: larger">Human-like Answering System </h3> -->
+ <!--                                <div style="color: #0f0f0f;font-size: 18px; margin:10px 60px">
+                                        The main key to answering the geometric problem lies in its rigorous logic.
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</section> -->
+
+<section id="downloads">
+    <div class="container-fluid with-bg-1">
+        <div class="container">
+            <div class="features">
+                <div class="g-pt-70 g-pb-30">
+                    <div class="g-heading-v10 g-mb-30 ">
+                        <p class="block-name"><span>2. </span>Video</p>
+                    </div>
+<!--                     <div style="margin: 0 auto; text-align: center;"> -->
+                        <!-- <iframe align="center" width="560" height="315" src="https://youtu.be/AL27TTvfPKA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+                        <!--                         <embed src='http://player.youku.com/player.php/sid/XNDE5ODQ3MzAyNA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed> -->
+<!--                     </div> -->
+                    <div style="color: #0f0f0f; font-size: 18px; margin:10px 60px">A video presenting the system is available at <a href="https://v.youku.com/v_show/id_XNDE5ODQ3MzAyNA==.html?spm=a2hzp.8244740.0.0&from=y1.7-1.2" target="_blank" style="color: #ff0000">here</a>.
+                    </div>
+                    <div style="color: #0f0f0f; font-size: 18px; margin:10px 60px">To facilitate further research on this topic, we have made the source code and dataset of proposed framework publicly available. If you will leverage these resources, please cite our paper.
+                    </div>
+                    <br/>
+
+                    <div style="color: #0f0f0f; font-size: 18px; margin:10px 60px">Code will be updated after the work be accepted.
+                    <br/>
+                    github://
+                    </div>            
+                </div>
+            </div>
+            <div class="row" align="center">
+                <!-- <iframe height=540 width=960
+                         src='https://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=e7cce029df12c1500a390f6a00cad118&tvId=479817700&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%'
+                         frameborder=0
+                 'allowfullscreen'>
+                 </iframe>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="references">
+    <div class="container">
+        <div>
+            <div class="subscribe">
+                <div class="g-heading-v10 g-mb-30 ">
+                    <p class="block-name"><span>3. </span>References</p>
+                </div>
+                <div class="row equal-height-columns">
+                    <div class="content">
+                        <ol style="text-indent: 0px;">
+                            <!-- 1 -->
+                            <li class="g-pb-10">Manning, C., Surdeanu, M., Bauer, J., Finkel, J., Bethard, S., McClosky, D.: The Stanford CoreNLP natural language processing toolkit. In: ACL, pp. 55-60 (2014).
+                            </li>
+                            <!-- 2 -->
+                            <li class="g-pb-10">Banko, M., Cafarella, M. J., Soderland, S., Broadhead, M., Etzioni, O.: Open information extraction from the web. In: IJCAI, pp. 2670-2676 (2007).
+                            </li>
+                            <!-- 3 -->
+                            <li class="g-pb-10">Kochtchi, A., Landesberger, T. V., Biemann, C.: Networks of Names: Visual Exploration and SemiAutomatic Tagging of Social Networks from Newspaper Articles. In: Computer Graphics Forum, pp. 211-220 (2014).
+                            </li>
+                            <!-- 4 -->
+                            <li class="g-pb-10">Spitkovsky, V. I., Chang, A. X.: A cross-lingual dictionary for english wikipedia concepts. In: LREC, pp. 3168-3175 (2012).
+                            </li>
+                            <!-- 5 -->
+                            <li class="g-pb-10">Mausam, M.: Open information extraction systems and downstream applications. In: IJCAI, pp. 4074-4077 (2016).
+                            </li>
+                            <!-- 6 -->
+                            <li class="g-pb-10">Schmitz, M., Bart, R., Soderland, S., Etzioni, O.: Open language learning for information extraction. In: EMNLP-CoNLL, pp. 523-534 (2012).
+                            </li>
+                            <!-- 7 -->
+                            <li class="g-pb-10">Del Corro, L., Gemulla, R.: Clausie: clause-based open information extraction. In:WWW, pp. 355-366 (2013).
+                            </li>
+                            <!-- 8 -->
+                            <li class="g-pb-10">Gashteovski, K., Gemulla, R., Del Corro, L.: Minie: minimizing facts in open information extraction. In: EMNLP, pp. 2630-2640 (2017).
+                            </li>
+                            <!-- 9 -->
+                            <li class="g-pb-10">Mihalcea, R., Tarau, P.: Textrank: Bringing order into text. In: EMNLP (2004).
+                            </li>
+                            <!-- 10 -->
+                            <li class="g-pb-10">Mann, G.: Multi-document relationship fusion via constraints on probabilistic databases. In: Human Language Technologies 2007: NAACL, pp. 332-339 (2007).
+                            </li>
+                            <!-- 11 -->
+                            <li class="g-pb-10">Ji, H., Favre, B., Lin,W. P., Gillick, D., Hakkani-Tur, D., Grishman, R.: Open-domain Multi-Document summarization via information extraction: Challenges and prospects. In: Multisource, multilingual information extraction and summarization, pp. 177-201 (2013).
+                            </li>
+                            <!-- 12 -->
+                            <li class="g-pb-10">Fuchs, C. A., Peres, A.: Quantum-state disturbance versus information. In: Uncertainty relations for quantum information. Physical Review A, 53(4), 20-38 (1996).
+                            </li>
+                            <!-- 13 -->
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="acknowledgement">
+    <div class="container">
+        <div class="whats-new">
+            <div class="g-heading-v10 g-mb-10 text-center">
+                <div class="g-heading-v10 g-mb-30 ">
+                    <p class="block-name"><span>4.</span> Acknowledgement</p>
+                </div>
+            </div>
+            <p class="content"></p>
+            <div style="color: #0f0f0f; font-size: 18px; margin:10px 60px">The authors wish to thank the anonymous reviewers for their helpful comments. This work was partially supported by National Natural Science Foundation of China (Nos.61572111 and 61876034), and a Fundamental Research Fund for the Central Universities of China (No.ZYGX2016Z003).
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contactus">
+    <div class="container-fluid with-bg-2 no-side-padding">
+        <div class="container">
+            <div class="footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="g-heading-v10 g-mb-65 " style="margin-bottom: 10px;">
+                            <h3 style="font-size: 30px;color: black; padding-left: 19px;">5. Contact us
+                            </h3>
+                            <div style="margin-left: 50px;font-size: 15px">
+                                <p>If you are interested in our works or have any problem, do not hesitate to contact
+                                    our group.</p>
+                                <p>Email: <a style="color:#4a4848" href="#">shengyp2011@163.com</a>
+                                </p>
+                                <p>TEL: 028-xxxxxxxx</p>
+                                <p>Address: No.2006, Xiyuan Ave, West Hi-Tech Zone, 611731 | Chengdu, Sichuan,
+                                    P.R.China</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+  renderMathInElement(
+      document.body,
+      {
+          delimiters: [
+              {left: "$$", right: "$$", display: true},
+              {left: "\\[", right: "\\]", display: true},
+              {left: "$", right: "$", display: false},
+              {left: "\\(", right: "\\)", display: false}
+          ]
+      }
+  );
+</script>
+</body>
+</html>
